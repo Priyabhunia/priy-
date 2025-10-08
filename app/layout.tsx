@@ -1,7 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Fira_Code } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
+// import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { LayoutClient } from "./layout-client" // Import the new client layout component
 import { Suspense } from "react"
@@ -33,7 +33,7 @@ export default function RootLayout({
         <Suspense fallback={<div>Loading...</div>}>
           <LayoutClient>{children}</LayoutClient>
         </Suspense>
-        <Analytics />
+        {/* <Analytics /> */}
       </body>
     </html>
   )
