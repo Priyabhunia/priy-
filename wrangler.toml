@@ -1,0 +1,12 @@
+name = "priy0" # Replace with your desired project name
+pages_build_output_dir = ".next"
+
+[build]
+command = "pnpm build"
+
+[build.upload]
+format = "modules"
+
+[[build.upload.rules]]
+type = "ESModule"
+globs = ["**/*.js"]
