@@ -1,9 +1,16 @@
-"use client"
+import fs from "fs"
+import path from "path"
+import { marked } from "marked"
 
-export default function Home() {
+export default async function Home() {
+  // Read the about.md file from the content directory
+  const aboutPath = path.join(process.cwd(), "content", "about.md")
+  const aboutContent = fs.readFileSync(aboutPath, "utf8")
+  const html = marked.parse(aboutContent)
+
   return (
-    <div className="flex items-center justify-center h-full bg-background text-foreground">
-      <h1 className="text-4xl font-bold">Welcome to my Portfolio!</h1>
+    <div>
+      <div className="prose max-w-xl" dangerouslySetInnerHTML={{ __html: html }} />
     </div>
   )
 }
