@@ -119,7 +119,7 @@ const FileNodeComponent: React.FC<FileNodeComponentProps> = ({ node, onFileSelec
           <ChevronRightIcon className={cn("h-4 w-4 transition-transform", isOpen && "rotate-90")} />
         )}
         {node.type === "folder" ? (
-          <FolderIcon className="h-4 w-4 mr-2 text-yellow-500" />
+          <FolderIcon className="h-4 w-4 mr-2 text-yellow-1000" />
         ) : (
           <FileIcon className="h-4 w-4 mr-2 text-gray-500" />
         )}
