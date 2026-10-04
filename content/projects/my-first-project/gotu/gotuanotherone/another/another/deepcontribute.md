@@ -1,5 +1,1 @@
-this is for the testing of deep folder system 
-
-
-
-this is mostly for testing 
+<center> <b><font size="500"> The split brain theory </font> </center>

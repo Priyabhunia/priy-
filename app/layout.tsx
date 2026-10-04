@@ -15,11 +15,11 @@ const geistMono = Fira_Code({
   variable: "--font-fira-code",
   subsets: ["latin"],
 })
-
+//this is meta data nothing important
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.app",
+  title: "change is inevitable",
+  description: "a website by priyo",
+  generator: "priyo",
 }
 
 export default function RootLayout({

@@ -123,7 +123,7 @@
     @apply bg-background text-foreground;
   }
   .prose {
-    @apply text-foreground;
+    @apply text-foreground text-center mx-auto;
   }
   .prose h1 {
     @apply text-foreground text-4xl font-bold;
@@ -146,33 +146,38 @@
     @apply text-green-800 underline;
   }
   .prose img {
-    @apply  mx-auto block;
+    @apply mx-auto block;
   }
   .prose code {
     @apply bg-muted text-muted-foreground rounded-sm px-1 py-0.5;
   }
   .prose pre {
-    @apply bg-card text-card-foreground p-4 rounded-md;
+    @apply bg-card text-card-foreground p-4 rounded-md text-left inline-block max-w-full;
   }
   
    /* Tables */
    .prose table {
-    @apply border-collapse border border-border w-full;
+    @apply border-collapse border border-border w-full mx-auto;
   }
   .prose th {
-    @apply bg-muted px-4 py-2 text-left font-semibold border border-border;
+    @apply bg-muted px-4 py-2 text-center font-semibold border border-border;
   }
   .prose td {
-    @apply px-4 py-2 border border-border;
+    @apply px-4 py-2 border border-border text-center;
   }
   
-  /* Lists */
+  /* Lists - centered block with aligned bullets */
   .prose ul,
   .prose ol {
-    @apply pl-6;
+    @apply inline-block text-left my-2 pl-6;
   }
   .prose li {
     @apply mb-2;
+  }
+
+  /* Horizontal Rules */
+  .prose hr {
+    @apply my-6 border-t border-border mx-auto max-w-md;
   }
 
 
