@@ -6,66 +6,6 @@ import { useState, useEffect } from "react"
 import { ChevronRightIcon, FolderIcon, FileIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-// interface FileNode {
-//   name: string
-//   type: "file" | "folder"
-//   content?: string
-//   children?: FileNode[]
-// }
-
-// const initialStructure: FileNode[] = [
-//   {
-//     name: "projects",
-//     type: "folder",
-//     children: [
-//       {
-//         name: "python-project-blogpost.md",
-//         type: "file",
-//         content:
-//           '# My Python Project Blog Post\n\nThis is a blog post about my awesome Python project. It uses Flask and a bit of machine learning.\n\n## Features\n\n- User authentication\n- Data visualization\n- API endpoints\n\n```python\nprint("Hello, Python!")\n```\n',
-//       },
-//       {
-//         name: "web-dev-project",
-//         type: "folder",
-//         children: [
-//           {
-//             name: "index.html",
-//             type: "file",
-//             content: "<h1>Web Dev Project</h1><p>A simple web development project.</p>",
-//           },
-//           {
-//             name: "styles.css",
-//             type: "file",
-//             content: "body { font-family: sans-serif; }",
-//           },
-//         ],
-//       },
-//     ],
-//   },
-//   {
-//     name: "about.md",
-//     type: "file",
-//     content: "# About Me\n\nHello! I am a passionate developer with a focus on creating clean and efficient code.",
-//   },
-//   {
-//     name: "contact.md",
-//     type: "file",
-//     content: "# Contact Me\n\nYou can reach me at example@example.com",
-//   },
-// ]
-
-// interface FileExplorerProps {
-//   nodes: FileNode[]
-//   onFileSelect: (content: string) => void
-// }
-// ... existing imports ...
-
-// Remove the hardcoded initialStructure array
-
-// ... existing imports ...
-
-// Remove the hardcoded initialStructure array
-
 interface FileNode {
   name: string;
   type: "file" | "folder";
@@ -135,16 +75,21 @@ const FileNodeComponent: React.FC<FileNodeComponentProps> = ({ node, onFileSelec
 };
 
 interface SidebarProps {
+  initialFiles?: FileNode[]
   onFileSelect: (content: string) => void
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ onFileSelect }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ initialFiles, onFileSelect }) => {
   const [isOpen, setIsOpen] = useState(true);
-  const [fileStructure, setFileStructure] = useState<FileNode[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [fileStructure, setFileStructure] = useState<FileNode[]>(initialFiles || []);
+  const [loading, setLoading] = useState(!initialFiles || initialFiles.length === 0);
 
-  // Fetch file structure on component mount
+  // Only fetch client-side if no initialFiles were provided from the server
   useEffect(() => {
+    if (initialFiles && initialFiles.length > 0) {
+      return;
+    }
+
     const fetchFiles = async () => {
       try {
         const response = await fetch('/api/files');
@@ -158,7 +103,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onFileSelect }) => {
     };
 
     fetchFiles();
-  }, []);
+  }, [initialFiles]);
 
   if (loading) {
     return (

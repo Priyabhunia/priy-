@@ -5,6 +5,7 @@ import { Inter, Fira_Code } from "next/font/google"
 import "./globals.css"
 import { LayoutClient } from "./layout-client" // Import the new client layout component
 import { Suspense } from "react"
+import { buildFileTree } from "@/lib/files"
 
 const geistSans = Inter({
   variable: "--font-inter",
@@ -27,11 +28,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  // Fetch file tree on the server — no client-side loading delay
+  const initialFiles = buildFileTree();
+
   return (
     <html lang="en">
       <body className={`font-sans ${geistSans.variable} ${geistMono.variable} flex h-screen`}>
         <Suspense fallback={<div>Loading...</div>}>
-          <LayoutClient>{children}</LayoutClient>
+          <LayoutClient initialFiles={initialFiles}>{children}</LayoutClient>
         </Suspense>
         {/* <Analytics /> */}
       </body>
